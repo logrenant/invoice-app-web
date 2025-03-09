@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.tsx
+import Sidebar from './components/Sidebar';
+import InvoiceListPage from './pages/InvoiceListPage';
+
+import { Layout, ConfigProvider } from 'antd';
+import { Routes, Route } from 'react-router-dom';
+
+const { Content } = Layout;
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sidebar
+      />
+      <Layout style={{
+        marginLeft: 250,
+        transition: 'margin 0.2s'
+      }}>
+        <Content
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            minHeight: 280,
+            background: '#fff',
+            borderRadius: 8,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Routes>
+            <Route path="/invoices" element={<InvoiceListPage />} />
+          </Routes>
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
 
